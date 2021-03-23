@@ -1,11 +1,15 @@
 import React from 'react';
-// import Table from './Table';
-// import Form from './Form';
+ import Table from './Table';
+ import Form from './Form';
 
 class LinkContainer extends React.Component {
     constructor(props){
         super(props)
         /* TODO - Create state object for storing favLinks */
+        this.state = {
+            favLinks : [{name:"Abrahim", URL: "www.google.com"}]
+        }
+
     }
 
     removeCharacter = index => {
@@ -26,12 +30,15 @@ class LinkContainer extends React.Component {
             <div className="container">
                 <h1>My Favorite Links</h1>
                 <p>Add a new url with a name and link to the table.</p>
-                {/*TODO - Add Table Component */}
-                
-                <br/>
+                <Table
+          linkData={this.state.favLinks}
+          removeLink={this.removeCharacter}
+        />
+        <br />
 
-                <h3>Add New</h3>
-                {/*TODO - Add Form Component */}
+        <h3>Add New</h3>
+        {/*TODO - Add Form Component */}
+        <Form />
             </div>
         );
     }
