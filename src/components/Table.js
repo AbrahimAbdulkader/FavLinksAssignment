@@ -20,15 +20,21 @@ const TableBody = props => {
     return (
             <tr key={index}>
                 <td>{row.name}</td>
-                <td><a href={row.URL}>{row.URL}</a></td>
-                <td><button onClick={() => props.removeLink(index)}>Delete</button></td>
+                <td>
+                    <a href={row.URL} target='_blank' rel='nonopener noreferrer'>
+                    {row.URL}
+                </a>
+                </td>
+                <td>
+                    <button onClick={() => props.removeLink(index)}>Delete</button>
+                    </td>
             </tr>
         );
     });
     
 
     return <tbody>{rows}</tbody>;
-}
+};
 
 const Table = (props) => {
     const { linkData, removeLink } = props;
@@ -36,14 +42,14 @@ const Table = (props) => {
             return (
                 
 
-                <div>
+                <table>
                 <TableHeader/>
                 <TableBody linkData={linkData} removeLink={removeLink}/>
-                </div>
-                
+                </table>
+            
 
-            )
+            );
 
-}
+};
 
 export default Table;

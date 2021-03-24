@@ -9,15 +9,22 @@ class Form extends Component {
 
         */
        this.state = {
-           name: "", 
-           url: ""
+           name: '', 
+           url: '',
        };
+
+       this.handleChange = this.handleChange.bind(this);
+       this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
     handleChange = event => {
         /*
             TODO - Logic for changing state based on form changes
         */
+
+            this.setState({
+                [event.target.name]: event.target.value
+            });
     }
 
     onFormSubmit = (event) => {
@@ -28,26 +35,46 @@ class Form extends Component {
             TODO - Logic for calling props to handle submission and setting state changes
         */
 
-    }
+            const obj = {
+                name: this.state.name,
+                URL: this.state.URL,
+            };
+            this.props.handleSubmit(obj);
 
+            this.setState({
+                name: '',
+                URL: '',
+            });
+    };
+    
     render() {
 
         return(
             <form>
                 {/* TODO - Logic for returning a form element with labels and inputs for link name and URL */}
                 <label htmlFor="name">
-
+                Name
                 </label>
-                
-                <input type = "text" id = "name" name = "name"/>
+                <input
 
-                <label htmlFor="url">
-
+                type = 'text' 
+                name = 'name' 
+                value = {this.state.name}
+                onChange={(event) => this.handleChange(event)}
+                />
+                <label htmlFor='URL'>
+                URL
                 </label>
-                
-                <input type = "text" id = "url" name = "url"/>
-            </form>
-        )
+                <input
+
+                type='text'
+                name='URL'
+                value={this.state.URL}
+                onChange={(event) => this.handleChange(event)}
+                />
+                <button onClick={(event) => this.onFormSubmit(event)}>Add</button>   
+                </form>     
+        );
     
     }
 }
